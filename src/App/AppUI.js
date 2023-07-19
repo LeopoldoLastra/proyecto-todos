@@ -5,8 +5,14 @@ import { TodoSerch } from '../TodoSerch';
 import { TodoList } from '../TodoList';
 import { TodoItem } from '../TodoItem';
 import { CreateTodoButton } from '../CreateTodoButton';
+import { TodoLoading } from "../TodoLoading";
+import { TodoErrors } from "../TodoErrors";
+import { EmptyTodos } from "../EmptyTodos";
+
 
 function AppUI({
+    loading,
+    error,
     completedTodos,
     totalTodos,
     serchValue,
@@ -26,7 +32,13 @@ function AppUI({
           setSerchValue={setSerchValue}
         />
         <TodoList>
-          {serchedTodos.map(todo=>(
+        {loading && <TodoLoading/>}
+        {error && <TodoErrors/>}
+        {(!loading && serchedTodos.length===0)  && <EmptyTodos/>}
+
+        
+
+        {serchedTodos.map(todo=>(
             <TodoItem 
             key={todo.key} 
             text={todo.text} 

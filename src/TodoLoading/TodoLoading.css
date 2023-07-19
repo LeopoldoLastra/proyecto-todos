@@ -1,0 +1,28 @@
+.TodoLoadingItem {
+    background-color: #FAFAFA;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    height: 70px;
+    box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+    animation: loading-skeleton infinite 1.5s;
+    
+  }
+
+  .TodoLoadingItem:nth-child(2) {
+    animation-delay: .2s;
+  }
+  
+  
+  /* Animations */
+@keyframes loading-skeleton {
+    0%, 100% {
+      opacity: 100%;
+    }
+    50% {
+      opacity: 0%;
+    }
+  }
+
