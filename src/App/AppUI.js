@@ -8,49 +8,40 @@ import { CreateTodoButton } from '../CreateTodoButton';
 import { TodoLoading } from "../TodoLoading";
 import { TodoErrors } from "../TodoErrors";
 import { EmptyTodos } from "../EmptyTodos";
+import { TodoContext } from "../TodoContext";
 
+function AppUI(){
 
-function AppUI({
-    loading,
+const {loading,
     error,
-    completedTodos,
-    totalTodos,
-    serchValue,
-    setSerchValue,
     serchedTodos,
     completeTodos,
-    deleteTodos
-}){
+    deleteTodos} = React.useContext(TodoContext)
+
     return(
         <>
-        <TodoCounter
-          completed= {completedTodos}
-          total = {totalTodos}
-        />
-        <TodoSerch
-          serchValue={serchValue}
-          setSerchValue={setSerchValue}
-        />
-        <TodoList>
-        {loading && <TodoLoading/>}
-        {error && <TodoErrors/>}
-        {(!loading && serchedTodos.length===0)  && <EmptyTodos/>}
-
-        
-
-        {serchedTodos.map(todo=>(
-            <TodoItem 
-            key={todo.key} 
-            text={todo.text} 
-            completed={todo.completed}
-            onCompleted = {()=>completeTodos(todo.key)} 
-            onDeleted = {()=>deleteTodos(todo.key)} />
-          ))
-          }
-        </TodoList>
+        <TodoCounter/>
+        <TodoSerch/>
+                <TodoList>
+                    {loading && <TodoLoading/>}
+                    {error && <TodoErrors/>}
+                    {(!loading && serchedTodos.length===0)  && <EmptyTodos/>}
+                    
+                    {serchedTodos.map(todo=>(
+                        <TodoItem 
+                        key={todo.key} 
+                        text={todo.text} 
+                        completed={todo.completed}
+                        onCompleted = {()=>completeTodos(todo.key)} 
+                        onDeleted = {()=>deleteTodos(todo.key)} />
+                    ))
+                    }
+                </TodoList>           
         <CreateTodoButton/>
     </>
-    )
-}
+
+            );}
+                
+  
 
 export {AppUI}
