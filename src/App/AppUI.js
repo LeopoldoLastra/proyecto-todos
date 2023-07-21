@@ -9,6 +9,9 @@ import { TodoLoading } from "../TodoLoading";
 import { TodoErrors } from "../TodoErrors";
 import { EmptyTodos } from "../EmptyTodos";
 import { TodoContext } from "../TodoContext";
+import { TodoForm } from "../TodoForm";
+
+import { Modal } from "../Modal";
 
 function AppUI(){
 
@@ -16,7 +19,9 @@ const {loading,
     error,
     serchedTodos,
     completeTodos,
-    deleteTodos} = React.useContext(TodoContext)
+    deleteTodos,
+    openModal,
+    setOpenModal} = React.useContext(TodoContext)
 
     return(
         <>
@@ -29,7 +34,7 @@ const {loading,
                     
                     {serchedTodos.map(todo=>(
                         <TodoItem 
-                        key={todo.key} 
+                        key={todo.text} 
                         text={todo.text} 
                         completed={todo.completed}
                         onCompleted = {()=>completeTodos(todo.key)} 
@@ -37,7 +42,13 @@ const {loading,
                     ))
                     }
                 </TodoList>           
-        <CreateTodoButton/>
+        <CreateTodoButton setOpenModal={setOpenModal}/>
+
+        {openModal && (
+            <Modal>
+                <TodoForm/>
+            </Modal>
+        )}
     </>
 
             );}

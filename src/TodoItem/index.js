@@ -9,11 +9,6 @@ function TodoItem({text, completed, onCompleted, onDeleted }){
         <li className="TodoItem">
 
 
-        {/* <span className={`Icon Icon-check ${completed && "Icon-check--active"}`}
-        onClick = {onCompleted }>
-          V
-        </span> */}
-
         <CompleteIcon
         completed={completed}
         onCompleted={onCompleted}
@@ -27,11 +22,7 @@ function TodoItem({text, completed, onCompleted, onDeleted }){
         <DeleteIcon
         onDeleted = {onDeleted}
         />
-        
-        {/* <span className="Icon Icon-delete"
-        onClick = {onDeleted}>
-          X
-        </span> */}
+       
 
       </li>
 
